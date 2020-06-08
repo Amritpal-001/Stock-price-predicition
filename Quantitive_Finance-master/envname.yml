@@ -1,0 +1,5 @@
+name: ENVNAME
+channels:
+  - defaults
+prefix: /Users/dennismacpro/miniconda3/envs/ENVNAME
+

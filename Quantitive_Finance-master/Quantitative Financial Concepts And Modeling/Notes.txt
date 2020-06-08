@@ -1,0 +1,101 @@
+What you will learn:
+
+Many finance students and professionals find derivatives the most challenging subject in their field.  But if you have a background in quantitative fields like statistics or computer science this course will show you that these most daunting of financial products are completely accessible to you.
+
+Topics Covered:
+Interest rate fundamentals
+
+Periodic and continuous compounding
+
+Discounted cash flow analysis
+
+Bond analysis
+
+The fundamentals of equity, currency, and commodity assets
+
+Portfolio modelling
+
+Long and short positions
+
+The principle of arbitrage
+
+The Law of One Price
+
+Forwards, futures, and swaps
+
+Risk management principles
+
+Futures hedging
+
+Stochastic processes
+
+Time series concepts
+
+The real statistics of asset prices: volatility clustering and autocorrelation
+
+Fat-tailed distribution and their importance for financial assets
+
+Brownian motion
+
+The log-normal model of asset prices
+
+Options
+
+Put-call parity
+
+The binomial model of option pricing
+
+The Black-Scholes theory and formula
+
+Option greeks: delta, gamma, and vega
+
+Dynamic hedging
+
+Volatility trading
+
+Implied volatility
+
+What you’ll learn
+Learn the fundamentals of derivatives at a quantitative level
+Master arbitrage, the core principle underlying derivatives, quantitative risk management and quantitative trading
+Use derivatives to control and manage financial risk
+Price forwards, futures, swaps and options
+Understand the Black-Scholes theory and formula intuitively, avoiding stochastic calculus
+Learn the limitations of the Black-Scholes theory, and how it is used in practice
+Python based tools are provided for computations with bonds, yield curves, and options
+
+Are there any course requirements or prerequisites?
+Calculus and a basic course in probability and statistics
+No knowledge or background in finance is assumed
+
+
+Financial Products: a huge univierse of assets, usually divided into 2 classes
+
+Cash Products: Stocks, bonds, currencies, commoditieis
+Derivativies: Forwards, futures, swaps, options
+
+Derivative: is an asset linked to another asset called the underlyinig asset or just the underlying
+
+The structure and value of the derivative asset is defnied by its relationship to the underlying
+
+1. Price: determined on markets
+2. Fair vluae: this corresponds to the "correct value"
+    a. time value of money
+    discoutned cash flow analysisi
+    arbitrage
+    
+Arbitrage is the centreal concept of this course.
+
+Arbitrage is a relatiive valutaioni method, and is the ideal tool for determiningi the relationiship between the value of a derivate asset and the value of its underlying
+
+The fundamental derivative structures:
+Forwards and futures are contracts that lock int he price 2 parties will buy and sell an asset for at some future date. The traded asset is the underlying.
+Optonis are similar to forwards but none party has the right not to particiapte at the time the contract expires.
+
+Swaps are linked to interest rates, allows a floating interest rate tobe switched to fa fixed rate. It ascts a rolling future
+
+Risk
+Risk is the chance or possibility of suffering financial loss
+One of the purpose of derivatives is to serve as risk management tool
+
+

@@ -1,0 +1,198 @@
+"""
+    Linear Regression Curves vs. Bollinger Bands
+    If Close price is greater than average+n*deviation, go short
+    If Close price is less than average+n*deviation, go long
+    Both should close when you cross the average/mean
+    
+    This is a simple trading strategy that provides some core mean-reverting properties. It involves the following:
+
+If the current price is greater than the upper bollinger band, sell the stock
+If the current price is less than the lower bollinger band, buy the stock
+
+The bollinger bands are calculated using an average +- multiplier*standard deviation. The average in this case, is calculated by a linear regression curve because a simple moving average is often a lagging indicator and becomes a big problem with long look-back periods.
+
+Playing around with the look-back period can provide some interesting results, try it out!
+Thoughts and suggestions are always welcome.
+
+"""
+import quantopian.algorithm as algo
+from quantopian.pipeline import Pipeline
+from quantopian.pipeline.filters import QTradableStocksUS, Q500US, Q1500US, Q3000US, StaticAssets
+
+from quantopian.pipeline.factors import SimpleMovingAverage, SimpleBeta, AverageDollarVolume
+from quantopian.pipeline.factors.fundamentals import MarketCap
+from quantopian.pipeline.classifiers.fundamentals import Sector
+from quantopian.pipeline.data import morningstar
+# Import data
+from quantopian.pipeline.data.builtin import USEquityPricing
+from quantopian.pipeline.data.morningstar import Fundamentals
+from quantopian.pipeline.domain import US_EQUITIES
+
+# Other imports
+from scipy import stats
+import numpy as np
+import pandas as pd
+import datetime
+
+
+def initialize(context):
+    """
+    Called once at the start of the algorithm.
+    """
+    
+    #30% max drawdown
+    context.max_drawdown = 0.3
+    context.day_counter = 0
+    context.dev_multiplier = 2
+    context.max_notional = 10000
+    context.min_notional = -10000
+ 
+    
+    # Rebalance every day, 1 hour after market open.
+    algo.schedule_function(
+        rebalance,
+        algo.date_rules.every_day(),
+   )
+
+    # Record tracking variables at the end of each day.
+    algo.schedule_function(
+        record_vars,
+        algo.date_rules.every_day(),
+        algo.time_rules.market_close(),
+    )
+
+    # Create our dynamic stock selector.
+    algo.attach_pipeline(make_pipeline(), 'pipeline')
+
+
+def make_pipeline():
+    
+    # base univese
+    base_universe = Q3000US()
+    
+    #Import Sector
+    sector = morningstar.asset_classification.morningstar_sector_code.latest
+    
+    # Tech Sector
+    tech_sector = sector.eq(311)
+    
+    # Bio Tech Sector
+    bio_tech_sector = sector.eq(206)
+    
+     # Dollar volume (30 days) Grab the iniformation
+    dollar_volume = AverageDollarVolume(window_length=30)
+    
+     # Grab the top 20% in avg dollar volume
+    high_dollar_volume = dollar_volume.percentile_between(80,100)
+    
+    # Combine filters
+    seleted_stock_final = (high_dollar_volume) & (base_universe) & (tech_sector|bio_tech_sector)
+    
+    # CLose Price
+    close_price = USEquityPricing.close.latest
+    
+    # Open Price
+    open_price = USEquityPricing.open.latest
+    
+    #High Pirce    
+    high_price = USEquityPricing.high.latest
+
+
+    
+    # Simple Beta
+    beta_to_spy = SimpleBeta(
+        target=symbol('SPY'),
+        regression_length=252,
+        allowed_missing_percentage=0.05
+    )
+        
+    # final screen - coomines tech and fundmental
+    final_screen = (beta_to_spy > 1) & (beta_to_spy < 1.5) & seleted_stock_final
+    
+    return Pipeline(
+        columns = {
+          'price': close_price,
+          'open_price': open_price,
+          'high_price': high_price,
+          'beta_to_spy': beta_to_spy,
+          'volume':high_dollar_volume,
+        },
+        screen=final_screen 
+    )
+
+
+def before_trading_start(context, data):
+    """
+    Called every day before market open.
+    """
+    context.output = algo.pipeline_output('pipeline')
+
+    # These are the securities that we are interested in trading each day.
+    context.security_list = context.output.index
+    for stock_index in context.security_list:
+        close = data.current(stock_index,'close')
+        print(close)
+        
+
+
+def rebalance(context, data):
+    """
+    Execute orders according to our schedule_function() timing.
+    """
+    context.day_counter+=1
+    
+    dev_mult = context.dev_multiplier
+    
+    # Get Notional Portfolio Position Value
+    notional = context.portfolio.positions_value
+    
+    #Calls get linear so that the moving average has somoething to reference
+    # Linear regression curve that returns the intercept curve
+    # Uses pass 20 days
+    days = [i for i in range(1,21)]
+    stocks = {}
+    for stock_index in context.security_list:
+        linear = stats.linregress(days,data.history(stock_index,"price",20,"1d"))[1]
+        stocks[stock_index] = linear
+        
+    
+    # Check only 20 days
+    if context.day_counter % 20 == 0:
+        try:
+            for stock_index in context.security_list:
+                close = data.current(stock_index,"close")
+                moving_average = stocks[stock_index]
+                stddev_hist = data.history(stock_index,"price",20,"1d")[:-1]
+                moving_dev = stddev_hist.std()
+                band = moving_average+dev_mult*moving_dev
+                
+                # if the close price is greater than band, short 100
+                if close > band and notional > context.min_notional:
+                    order(stock_index,-100)
+                    log.debug("Shorting 100 of " + str(stock_index))
+                
+                # and if less buy 100
+                elif close < band and notional < context.max_notional:
+                    order(stock_index,100)
+                    log.debug("Going long 100 of" + str(stock_index))                
+        
+        except Exception as e:
+            log.error(e)
+            return
+        
+    
+    
+
+
+def record_vars(context, data):
+    """
+    Plot variables at the end of each day.
+    """
+    pass
+
+
+def handle_data(context, data):
+    """
+    Called every minute.
+    """
+    pass

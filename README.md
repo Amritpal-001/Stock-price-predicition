@@ -31,6 +31,7 @@ samplecsv files included in seprate folder - "CSV FILES".
 
 -MRF Limited(MRF) - MRF_Stock_Prediction_Using_LSTM.ipynb
 
+Opening_Price_Prediction
 ![Opening_Price_Prediction](Images/Openingpricepredictions.png)
 
 ## For Stock data -
@@ -43,8 +44,10 @@ https://www.kaggle.com/camnugent/sandp500/data?select=individual_stocks_5yr - co
 
 Indian companies data - https://www.quandl.com/
 
+Detailed_visualisation_of_stocks
 ![Detailed_visualisation_of_stocks](/Images/indepth-1.png)
 
+TCS_Stock_Prediction
 ![TCS_Stock_Prediction](/Images/TCS-stockpredicion3.png)
 
 ## Useful resources
@@ -55,5 +58,6 @@ Prediciting Opening and closing prices - SnehJain/Deep-Neural-Networks-For-Stock
 
 Combining Stock and Twitter Data(positive and negative comments) and Stock - viswa0531/StockMarketPredictionUsingML
 
+Complex_Stock_Visualisation 
 ![Complex_Stock_Visualisation ](/Images/COMPLEXStocksvisualisation.png)
 

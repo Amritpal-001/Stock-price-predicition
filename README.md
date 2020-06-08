@@ -1,4 +1,4 @@
-# Stock-predicitions
+# Stock Price Predicition
 
 ## Contents
 

@@ -3,13 +3,20 @@
 ## Contents
 
 1 - Detailed_visualisation_of_stocks.ipynb
+
 2 - Opening_Price_Prediction_keras.ipynb
+
 3 - Closing_Price_Prediction_Keras.ipynb
+
 4 - TCS_Stock_Prediction_LSTM_quandl_api.ipynb
+
 5 - MRF_Stock_Prediction_Using_LSTM.ipynb
+
 6 - Complex_Stock_Visualisation,_LSTM_based_comparison_of_Return,_Votality,_Trading_volume.ipynb
+
 7 - Stocks_Comparison_KNN,_Random_Forest,_LSTM,_CNN,_XGboost.ipynb
 
+----
 samplecsv files included in seprate folder - "CSV FILES".
 
 ## Companies covered

@@ -1,32 +1,52 @@
 # Stock-predicitions
 
-## Contents 
-Simple Stock preidictions and Visualisation - Simple Stock preidictions and Visulaisation.ipynb , time_series_analysis.ipynb 
+## Contents
 
-Prediciting Opening and closing prices -  	Stock_Close_Price_Prediction.ipynb 	, 	Stock_Open_Price_Prediction.ipynb
+1 - Detailed_visualisation_of_stocks.ipynb
+2 - Opening_Price_Prediction_keras.ipynb
+3 - Closing_Price_Prediction_Keras.ipynb
+4 - TCS_Stock_Prediction_LSTM_quandl_api.ipynb
+5 - MRF_Stock_Prediction_Using_LSTM.ipynb
+6 - Complex_Stock_Visualisation,_LSTM_based_comparison_of_Return,_Votality,_Trading_volume.ipynb
+7 - Stocks_Comparison_KNN,_Random_Forest,_LSTM,_CNN,_XGboost.ipynb
 
-Combining Stock and Twitter Data(positive and negative comments) and Stock  -  "Combining Stock and Twitter Data" folder
+samplecsv files included in seprate folder - "CSV FILES".
 
-------
-samplecsv files included in seprate folder.
+## Companies covered
 
-### Companies covered 
-   - Tata Consultancy Services (TCS) -     "TCS - LSTM-Conv" - folder
-   -  MRF Limited(MRF) -                    "MRF - LSTM-Conv" folder
+-Apple
 
+-Tesla
 
+-Amazon 
 
-### For Stock data -
-Use Pandas_ Datareader function - from pandas_datareader import data       or       import pandas_datareader as web
-[https://www.alphavantage.co/](https://www.alphavantage.co/) -   Free API for donwloading or monitoring stocks    
-[https://www.kaggle.com/camnugent/sandp500/data?select=individual_stocks_5yr](https://www.kaggle.com/camnugent/sandp500/data?select=individual_stocks_5yr) -  contains pre- downloaded Stocks values of different companies 
+-Tata Consultancy Services (TCS) - TCS_Stock_Prediction_LSTM_quandl_api.ipynb
 
-Indian companies data - [https://www.quandl.com/](https://www.quandl.com/)
+-MRF Limited(MRF) - MRF_Stock_Prediction_Using_LSTM.ipynb
 
+[Opening_Price_Prediction](Images/Openingpricepredictions.png)
 
-### Useful resources
-Simple Stock preidictions and Visulaisation -  [dduemig/stanford-Project-Predicting-stock-prices-using-a-LSTM-Network](https://github.com/dduemig/Stanford-Project-Predicting-stock-prices-using-a-LSTM-Network)
+## For Stock data -
 
-Prediciting Opening and closing prices -  [SnehJain/Deep-Neural-Networks-For-Stock-Price-Prediction](https://github.com/SnehJain/Deep-Neural-Networks-For-Stock-Price-Prediction)
-  
-Combining Stock and Twitter Data(positive and negative comments) and Stock -  [viswa0531/StockMarketPredictionUsingML](https://github.com/viswa0531/StockMarketPredictionUsingML)
+Use Pandas_ Datareader function - from pandas_datareader import data or import pandas_datareader as web
+
+https://www.alphavantage.co/ - Free API for donwloading or monitoring stocks
+
+https://www.kaggle.com/camnugent/sandp500/data?select=individual_stocks_5yr - contains pre- downloaded Stocks values of different companies
+
+Indian companies data - https://www.quandl.com/
+
+[Detailed_visualisation_of_stocks](/Images/indepth-1.png)
+
+[TCS_Stock_Prediction](/Images/TCS-stockpredicion3.png)
+
+## Useful resources
+
+Simple Stock preidictions and Visulaisation - dduemig/stanford-Project-Predicting-stock-prices-using-a-LSTM-Network
+
+Prediciting Opening and closing prices - SnehJain/Deep-Neural-Networks-For-Stock-Price-Prediction
+
+Combining Stock and Twitter Data(positive and negative comments) and Stock - viswa0531/StockMarketPredictionUsingML
+
+[Complex_Stock_Visualisation ](/Images/COMPLEXStocksvisualisation.png)
+
